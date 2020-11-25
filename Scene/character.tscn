@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Sprites/WalkRight_MouthOpen_Pink1.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/character.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/WalkRight_MouthOpen_Pink3.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/WalkRight_MouthOpen_Pink2.png" type="Texture" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 66.469
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "move",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "nomove",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 72.3358
+height = 49.7983
+
+[node name="player" type="KinematicBody2D"]
+position = Vector2( 514.65, 295.627 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 8 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "nomove"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -100 )
+current = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, 2.3811 )
+shape = SubResource( 3 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

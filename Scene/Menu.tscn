@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/PlayButton.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/ExitButton.png" type="Texture" id=3]
+[ext_resource path="res://Audio/220210__gameaudio__bonk-click-w-deny-feel.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sprites/bg2.png" type="Texture" id=5]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="bg" type="Sprite" parent="."]
+position = Vector2( 514.969, 299.594 )
+scale = Vector2( 0.473808, 0.505605 )
+texture = ExtResource( 5 )
+
+[node name="play" type="TextureButton" parent="bg"]
+margin_left = -441.255
+margin_top = -328.817
+margin_right = 425.745
+margin_bottom = 116.183
+texture_normal = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="exit" type="TextureButton" parent="bg"]
+margin_left = -215.21
+margin_top = 222.61
+margin_right = 168.79
+margin_bottom = 425.61
+texture_normal = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="bg"]
+stream = ExtResource( 4 )
+[connection signal="pressed" from="bg/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="bg/exit" to="." method="_on_exit_pressed"]

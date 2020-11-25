@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites/frame-2.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/frame-1.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/enemy.gd" type="Script" id=3]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 61.8709
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[node name="Enemy" type="KinematicBody2D" groups=[
+"Enemy",
+]]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2.11893, 0.529739 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1.58914, -1.05945 )
+scale = Vector2( 0.141964, 0.144791 )
+frames = SubResource( 2 )
+flip_h = true
